@@ -33,20 +33,27 @@ namespace Naive.Consul.Configuration
 
             return await DeserializeFromStreamAsync<ConsulKeyValuePair[]>(httpResponseMessage.Content).ConfigureAwait(false);
         }
-        public async Task<string> GetValueAsync(string key)
-        {
-            var consulKeyValue = await GetAsync(key, true).ConfigureAwait(false);
-            return consulKeyValue.Value;
 
-        }
-        public async Task<string[]> GetKeysAsync()
-        {
-            var httpResponseMessage = await _httpClient.GetAsync(ConsulKeysRelativeUri).ConfigureAwait(false);
+        //public async Task<string> GetValueAsync(string key)
+        //{
+        //    var consulKeyValue = await GetAsync(key, true).ConfigureAwait(false);
+        //    return consulKeyValue.Value;
+        //}
 
-            //TODO : Is there a better way ?
-            // return await DeserializeFromStringAsync(httpResponseMessage.Content).ConfigureAwait(false);
-            return await DeserializeFromStreamAsync<string[]>(httpResponseMessage.Content).ConfigureAwait(false);
-        }
+        //public async Task<string[]> GetKeysAsync()
+        //{
+        //    var httpResponseMessage = await _httpClient.GetAsync(ConsulKeysRelativeUri).ConfigureAwait(false);
+        //    //TODO : Is there a better way ?
+        //    // return await DeserializeFromStringAsync(httpResponseMessage.Content).ConfigureAwait(false);
+        //    return await DeserializeFromStreamAsync<string[]>(httpResponseMessage.Content).ConfigureAwait(false);
+        //}
+
+        //private async Task<string[]> DeserializeFromStringAsync(HttpContent httpContent)
+        //{
+        //    var keysAsString = await httpContent.ReadAsStringAsync().ConfigureAwait(false);
+        //    return JsonConvert.DeserializeObject<string[]>(keysAsString);
+        //}
+
         public async Task<ConsulKeyValuePair> GetAsync(string key)
         {
             return await GetAsync(key, true);
@@ -70,12 +77,6 @@ namespace Naive.Consul.Configuration
             }
 
             return consulKeyValue;
-        }
-
-        private async Task<string[]> DeserializeFromStringAsync(HttpContent httpContent)
-        {
-            var keysAsString = await httpContent.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<string[]>(keysAsString);
         }
 
         private async Task<T> DeserializeFromStreamAsync<T>(HttpContent httpContent)

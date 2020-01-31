@@ -32,18 +32,18 @@ namespace Naive.Consul.Configuration
             Data = data;
         }
 
-        private async Task LoadAsync()
-        {
-            var keys = await _consulKeyValueClient.GetKeysAsync().ConfigureAwait(false);
-            var data = new Dictionary<string, string>();
+        //private async Task LoadAsync()
+        //{
+        //    var keys = await _consulKeyValueClient.GetKeysAsync().ConfigureAwait(false);
+        //    var data = new Dictionary<string, string>();
 
-            foreach(var key in keys)
-            {
-                var value = await _consulKeyValueClient.GetValueAsync(key).ConfigureAwait(false);
-                data.Add(key, value);
-            }
+        //    foreach(var key in keys)
+        //    {
+        //        var value = await _consulKeyValueClient.GetValueAsync(key).ConfigureAwait(false);
+        //        data.Add(key, value);
+        //    }
 
-            Data = data;
-        }
+        //    Data = data;
+        //}
     }
 }
