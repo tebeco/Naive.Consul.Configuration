@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.*" />
-    <ProjectReference Include="..\..\..\src\Config.ConsulKeyValue\Config.ConsulKeyValue.csproj" />
+    <ProjectReference Include="..\..\..\src\Naive.Consul.Configuration\Naive.Consul.Configuration.csproj" />
   </ItemGroup>
 
 

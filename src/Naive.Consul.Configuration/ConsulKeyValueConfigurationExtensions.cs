@@ -1,20 +1,11 @@
 using System;
-using System.Threading.Tasks;
+using Naive.Consul.Configuration;
 
 namespace Microsoft.Extensions.Configuration
 {
-    /// <summary>
-    /// TODO
-    /// </summary>
     public static class ConsulKeyValueConfigurationExtensions
     {
-
-    /// <summary>
-    /// TODO
-    /// </summary>
-        public static IConfigurationBuilder AddConsulKeyValue(
-            this IConfigurationBuilder configurationBuilder,
-            Uri consulAgentUri)
+        public static IConfigurationBuilder AddConsulKeyValue(this IConfigurationBuilder configurationBuilder, Uri consulAgentUri)
         {
             if (configurationBuilder == null)
             {

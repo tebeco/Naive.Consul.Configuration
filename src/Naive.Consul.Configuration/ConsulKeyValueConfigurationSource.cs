@@ -1,21 +1,12 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
-namespace Microsoft.Extensions.Configuration
+namespace Naive.Consul.Configuration
 {
-    /// <summary>
-    /// TODO
-    /// </summary>
     public class ConsulKeyValueConfigurationSource : IConfigurationSource
     {
-        /// <summary>
-        /// TODO
-        /// </summary>
         public Uri ConsulAgentUri { get; set; }
 
-        /// <summary>
-        /// TODO
-        /// </summary>
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             var consulHttpClient = new ConsulKeyValueHttpClient(ConsulAgentUri);

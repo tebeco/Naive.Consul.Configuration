@@ -12,7 +12,7 @@ namespace ConsulDevAgentRunner
 
         public ConsulAgentRunner(string consulPath = null)
         {
-            _consulPath = consulPath ?? "consul.exe"; //null if consul in the PATH
+            _consulPath = consulPath ?? @"C:\dev\tools\consul\consul.exe"; //null if consul in the PATH
         }
 
         private Process GetConsulProcess(string arguments)
@@ -42,7 +42,7 @@ namespace ConsulDevAgentRunner
 
         public void PutRandomKeys()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 PutKeyValue($"Key_{i}", $"Value_{i}");
                 PutKeyValue($"SomeSubFolder/Sub_Key_{i}", $"Sub_Value_{i}");

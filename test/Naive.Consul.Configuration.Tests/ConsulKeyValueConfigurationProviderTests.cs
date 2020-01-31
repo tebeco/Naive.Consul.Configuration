@@ -1,35 +1,36 @@
+﻿using System;
 using Xunit;
 using Moq;
-using System;
 
-namespace Microsoft.Extensions.Configuration.ConsulKeyValue.Test
+namespace Naive.Consul.Configuration.Tests
 {
-    public class NaiveConsulKeyValueConfigurationProviderTests
+    public class ConsulKeyValueConfigurationProviderTests
     {
         [Fact]
         public void Should_throw_for_null_IConsulKeyValueClient()
         {
-            //given
+            //Given
             IConsulKeyValueClient client = null;
 
             // When
-            var shouldThrow = new Action(() => new NaiveConsulKeyValueConfigurationProvider(client));
+            var shouldThrow = new Action(() => new ConsulKeyValueConfigurationProvider(client));
 
+            //Then
             Assert.Throws<ArgumentNullException>(shouldThrow);
         }
 
         [Fact]
         public void Should_call_GetKeysAsync_on_load()
         {
-            //given
+            //Given
             var consulClientMock = new Mock<IConsulKeyValueClient>();
-            var consulKeyValueConfigurationProvider = new NaiveConsulKeyValueConfigurationProvider(consulClientMock.Object);
+            var consulKeyValueConfigurationProvider = new ConsulKeyValueConfigurationProvider(consulClientMock.Object);
 
             //When
             consulKeyValueConfigurationProvider.Load();
 
             //Then
-            consulClientMock.Verify(mock => mock.GetKeysAsync(), Times.Once());
+            consulClientMock.Verify(mock => mock.GetAllAsync(), Times.Once());
         }
 
         [Fact]
@@ -37,7 +38,7 @@ namespace Microsoft.Extensions.Configuration.ConsulKeyValue.Test
         {
             //given
             var consulClientMock = new Mock<IConsulKeyValueClient>();
-            var consulKeyValueConfigurationProvider = new NaiveConsulKeyValueConfigurationProvider(consulClientMock.Object);
+            var consulKeyValueConfigurationProvider = new ConsulKeyValueConfigurationProvider(consulClientMock.Object);
             consulClientMock.Setup(c => c.GetKeysAsync()).ReturnsAsync(new[] { "Test_Key_1", "Test_Key_2", "Test_Key_3" });
 
             //When
@@ -54,7 +55,7 @@ namespace Microsoft.Extensions.Configuration.ConsulKeyValue.Test
         {
             //given
             var consulClientMock = new Mock<IConsulKeyValueClient>();
-            var consulKeyValueConfigurationProvider = new NaiveConsulKeyValueConfigurationProvider(consulClientMock.Object);
+            var consulKeyValueConfigurationProvider = new ConsulKeyValueConfigurationProvider(consulClientMock.Object);
             consulClientMock.Setup(c => c.GetKeysAsync()).ReturnsAsync(new[] { "SomeFolder/Test_Key_1", "Test_Key_2", "Test_Key_3" });
 
             //When
@@ -73,7 +74,7 @@ namespace Microsoft.Extensions.Configuration.ConsulKeyValue.Test
             var returnedKey = "SomeFolder/Test_Key_1";
             var expectedValue = "Some_SubValue";
             var consulClientMock = new Mock<IConsulKeyValueClient>();
-            var consulKeyValueConfigurationProvider = new NaiveConsulKeyValueConfigurationProvider(consulClientMock.Object);
+            var consulKeyValueConfigurationProvider = new ConsulKeyValueConfigurationProvider(consulClientMock.Object);
             consulClientMock.Setup(c => c.GetKeysAsync()).ReturnsAsync(new[] { returnedKey });
             consulClientMock.Setup(c => c.GetValueAsync(It.Is<string>(key => string.Compare(key, "SomeFolder/Test_Key_1") == 0)))
                             .ReturnsAsync(expectedValue);

@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{065094CA-D54F-43ED-AD1E-FE4C588C1254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Config.ConsulKeyValue.Test", "test\Config.ConsulKeyValue.Test\Config.ConsulKeyValue.Test.csproj", "{A485336B-A778-4D7E-A27F-81BF2BC858EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naive.Consul.Configuration.Tests", "test\Naive.Consul.Configuration.Tests\Naive.Consul.Configuration.Tests.csproj", "{A485336B-A778-4D7E-A27F-81BF2BC858EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A616913B-1CF8-43B3-88CC-A76E989E5671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Config.ConsulKeyValue", "src\Config.ConsulKeyValue\Config.ConsulKeyValue.csproj", "{648C30D7-7F42-4142-A601-2884C996D15A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naive.Consul.Configuration", "src\Naive.Consul.Configuration\Naive.Consul.Configuration.csproj", "{648C30D7-7F42-4142-A601-2884C996D15A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{55BC7E24-5A6C-4386-836E-744AE46423D8}"
 EndProject
