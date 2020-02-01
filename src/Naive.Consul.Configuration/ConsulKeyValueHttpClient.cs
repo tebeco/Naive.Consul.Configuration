@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Naive.Consul.Configuration
 {
@@ -64,7 +64,7 @@ namespace Naive.Consul.Configuration
             var httpResponseMessage = await _httpClient.GetAsync(string.Format(ConsulKeyValueRelativeUriFormat, key)).ConfigureAwait(false);
             var consulKeyValueAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            var consulKeyValues = JsonConvert.DeserializeObject<ConsulKeyValuePair[]>(consulKeyValueAsString);
+            var consulKeyValues = JsonSerializer.Deserialize<ConsulKeyValuePair[]>(consulKeyValueAsString);
 
             // I have no idea if thre's a better idea than the .First() here since there should only be one key matching
             // Should i throw on multiple key match ?
